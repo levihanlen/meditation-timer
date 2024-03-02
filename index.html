@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+  <meta charset="UTF-8" />
+  <title>Hello, world!</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="" />
+  <link rel="icon" href="favicon.png">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kurtiskumar/ui-kit/index.min.css">
+  <style>
+    .article {
+      width: 100%;
+    }
+
+    #textTextarea {
+      resize: none;
+      width: 100%;
+      height: 100%;
+
+    }
+    #errorDiv {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .textareaContainer {
+      border-radius: var(--borderRadiusM);
+      overflow: hidden;
+      height: 300px;
+    }
+
+    .errorSpan {
+      background-color: var(--colorErrorLight);
+      padding: var(--spacingXS) var(--spacingS);
+      border-radius: var(--borderRadiusM);
+      margin-bottom: var(--spacingXS);
+    }
+  
+  </style>
+</head>
+<body>
+  <div id="container">
+    <div id="content">
+      
+      <div class="article">
+        <h1>FocusMe</h1>
+        <p>A super simple meditation timer.</p>
+        <h1 id="timerDisp">00:00</h1>
+        
+        <div class="spacingVM"></div>
+        <div style="display: flex; flex-direction: row;">
+          <button id="startBtn" class="primaryBtn">Start</button>
+          <div class="spacingHXS"></div>
+          <button id="pauseBtn" class="secondaryBtn">Pause</button>
+
+        </div>
+
+        <div class="spacingVM"></div>
+        <label for="frequencyInput">Frequency (seconds)</label>
+        
+        <div class="spacingVXXS"></div>
+        <input id="frequencyInput" type="number" min="1" max="1000">
+        
+        
+      </div>
+
+    </div>
+  </div>
+</body>
+<script src="base.js"></script>
+</html>
