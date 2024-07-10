@@ -8,7 +8,7 @@ msg.rate = 1.9; // From 0.1 to 10
 let frequency = 20;
 let running = false;
 let timeLeft = 0;
-let timeLength = 1000 * 60 * 2; // 10 minutes
+let timeLength = 1000 * 60 * 15; // 10 minutes
 let doneCount = 0;
 let expectedTime = 0;
 
@@ -22,33 +22,31 @@ frequencyInput.addEventListener("change", () => {
   }
   frequency = Math.min(Math.max(parseInt(frequencyInput.value), 1), 1000);
   frequencyInput.value = frequency;
-})
-
-
+});
 
 startBtn.addEventListener("click", () => {
   running = !running;
   if (running) {
+    window.speechSynthesis.cancel();
+    msg.text = "Start";
+    window.speechSynthesis.speak(msg);
     startBtn.innerHTML = `Stop`;
     if (timeLeft == 0) {
-      console.log("here")
+      console.log("here");
       expectedTime = Date.now() + timeLength;
     } else {
       expectedTime = Date.now() + timeLeft;
-
     }
     timer();
   } else {
     startBtn.innerHTML = `Start`;
-    console.log("here")
+    console.log("here");
     timeLeft = 0;
   }
-})
-
-
+});
 
 function timer() {
-  console.log(timeLeft)
+  console.log(timeLeft);
   if (running) {
     const pastTimeLeft = timeLeft;
     timeLeft = expectedTime - Date.now();
@@ -62,7 +60,7 @@ function timer() {
       minutes = "00";
       seconds = "00";
     }
-    
+
     if (hours.toString().length === 1) {
       hours = "0" + hours.toString();
     }
@@ -79,7 +77,7 @@ function timer() {
     console.log("difference", difference);
     console.log("focusInt", focusInt);
     if (focusInt <= 0) {
-      console.log("heer")
+      console.log("heer");
       focusInterval();
     }
     if (timeLeft <= 0) {
@@ -88,28 +86,30 @@ function timer() {
         doneCount = 20;
         window.speechSynthesis.cancel();
         msg.text = "done";
-        
+
         window.speechSynthesis.speak(msg);
       }
-      
     }
     setTimeout(timer, 100);
   }
 }
 
 function findInterval() {
-  return (Math.random() < 0.5 ? Math.random() / 2 + 0.5 : Math.random() + 1) * frequency * 1000;
+  return (
+    (Math.random() < 0.5 ? Math.random() / 2 + 0.5 : Math.random() + 1) *
+    frequency *
+    1000
+  );
 }
 
 function focusInterval() {
   if (timeLeft <= 0) {
     return;
   }
-  console.log("HERHERHE")
+  console.log("HERHERHE");
   window.speechSynthesis.cancel();
   focusInt = findInterval();
   msg.text = "focus";
-  
+
   window.speechSynthesis.speak(msg);
-  
 }
